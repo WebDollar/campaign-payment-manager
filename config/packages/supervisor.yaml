@@ -1,0 +1,21 @@
+supervisor:
+    exporter:
+        program:
+            autostart: 'true'
+            autorestart: 'true'
+            stdout_logfile: '/var/log/%env(resolve:APP_NAME)%/%%(program_name)s_%%(process_num)02d.log'
+            redirect_stderr: true
+            stopwaitsecs: 30
+            directory: '%kernel.project_dir%'
+            user: '%env(resolve:DAEMONS_USER)%'
+
+        # allows you to specify a program that all commands should be passed to
+        executor: php
+
+        # allows you to specify the console that all commands should be passed to
+        console: bin/console
+
+        default_params: --no-debug
+
+        extra_commands:
+            - {name: "server:run", params: "0.0.0.0:8000"}

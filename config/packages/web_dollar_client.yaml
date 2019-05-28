@@ -1,0 +1,15 @@
+parameters:
+    # Adds a fallback WEBDOLLAR_CLIENT_NODE_1_URL if the env var is not set.
+    # This allows you to run cache:warmup even if your
+    # environment variables are not available yet.
+    # You should not need to change this value.
+    env(WEBDOLLAR_CLIENT_NODE_1_URL) : ''
+    env(WEBDOLLAR_CLIENT_NODE_1_USER): ''
+    env(WEBDOLLAR_CLIENT_NODE_1_PASS): ''
+
+web_dollar_client:
+    clients:
+        node_1:
+            config:
+                url: '%env(resolve:WEBDOLLAR_CLIENT_NODE_1_URL)%'
+                auth: ['%env(resolve:WEBDOLLAR_CLIENT_NODE_1_USER)%', '%env(resolve:WEBDOLLAR_CLIENT_NODE_1_PASS)%']
