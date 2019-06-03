@@ -4,7 +4,7 @@ ARG NODE_VERSION=11
 FROM node:${NODE_VERSION}-alpine AS nodejs
 
 ARG PROJECT_PATH=/var/www/html/project
-ARG APP_ENV=dev
+ARG APP_ENV=prod
 WORKDIR ${PROJECT_PATH}
 
 RUN set -eux; \
@@ -28,7 +28,7 @@ RUN set -eux; \
 
 FROM php:${PHP_VERSION}-cli AS php
 
-ARG APP_ENV=dev
+ARG APP_ENV=prod
 ARG PROJECT_PATH=/var/www/html/project
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -59,7 +59,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
        acl \
        netcat \
        wget \
-       mysql-client \
        supervisor \
     && rm -rf /var/lib/apt/lists/*
 

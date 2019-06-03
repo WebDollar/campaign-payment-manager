@@ -26,7 +26,7 @@ class ProcessPaymentsCommand extends DaemonCommand implements IEntityManagerAwar
 {
     use EntityManagerAwareCommandTrait;
 
-    private const MAX_PAYMENTS = 2;//255;
+    private const MAX_PAYMENTS = 255;
 
     private const WEBD_COINS = 10000;
 
